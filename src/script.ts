@@ -27,6 +27,6 @@ const copy: deepCloneType = deepClone(original);
 
 if (typeof copy === 'object' && copy !== null && 'b' in copy) {
   console.log(original !== copy);
-  console.log(original.b !== (copy as { b: deepCloneType }).b);
-  console.log(original.d !== (copy as { d: deepCloneType[] }).d);
+  console.log(original.b !== copy.b);
+  console.log(original.d !== copy.d);
 }
