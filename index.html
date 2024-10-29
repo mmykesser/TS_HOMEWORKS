@@ -3,15 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <title>Title</title>
+    <style>
+        #txt {
+            width: 300px;
+            height: 80px;
+            font-size: 16px;
+            padding: 8px;
+            margin-top: 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px ;
+            font-size: larger;
+        }
+        button{
+            display: block;
+            margin-bottom: 10px;
+        }
+        span{
+            font-size: x-large;
+
+        }
+    </style>
   </head>
   <body>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium
-      alias asperiores consequatur eligendi eos et incidunt iste magni maxime
-      necessitatibus neque perspiciatis possimus quaerat, quibusdam quos
-      repudiandae similique, tempore temporibus!
-    </p>
+  <div>
+    <h1>Test</h1>
+    <span>Banned words: file, folder, price </span>
+    <form action="/" id="test_form">
+      <label for='txt'>Type text</label>
+      <textarea name="type_txt" id="txt"></textarea>
+      <button>Submit</button>
+    </form>
+    <div id="result"></div>
+  </div>
 
-    <script src="src/script.ts"></script>
+    <script src="src/script.js"></script>
   </body>
 </html>
