@@ -1,9 +1,9 @@
 enum OrderStatus {
-  Pending,
-  Processing,
-  Shipped,
-  Delivered,
-  Canceled,
+  Pending = 'Pending',
+  Processing = 'Processing',
+  Shipped = 'Shipped',
+  Delivered = 'Delivered',
+  Canceled = 'Canceled',
 }
 
 enum PaymentType {
