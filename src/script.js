@@ -54,3 +54,5 @@ system.assignTeacherToCourse(439, 2);
 system.enrollStudentToCourse(438, 1);
 system.enrollStudentToCourse(438, 0);
 system.enrollStudentToCourse(439, 0);
+
+console.log(system.generateReport());
