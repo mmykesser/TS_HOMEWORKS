@@ -1,43 +1,49 @@
 import BaseModel from './BaseModel.js';
+import { ifcUser } from './interface.js';
 
-class User extends BaseModel {
+class User extends BaseModel implements ifcUser {
   static idCounter: number = 0;
-  id: number;
-  name: string;
-  #email: string = '';
-  #password: string = '';
+  readonly id: number;
+  private _password: string;
 
-  changePassword(newPassword: string) {
+  public changePassword(newPassword: string): void {
     if (!newPassword || !newPassword.trim()) {
       throw new Error('Password must be a string');
     }
-    this.#password = newPassword;
+    this._password = newPassword;
   }
 
   get info(): string {
     return `ID: ${this.id}; name: ${this.name}; Email: ${this.email}`;
   }
 
-  constructor(name: string, email: string) {
+  constructor(
+    public name: string,
+    private _email: string
+  ) {
     super();
     this.name = name;
-    this.email = email;
-
+    this.email = _email;
+    this._password = '';
     this.id = User.idCounter;
 
     User.idCounter += 1;
   }
 
   get email(): string {
-    return this.#email;
+    return this._email;
   }
 
-  set email(email: string) {
+  protected set email(email: string) {
     if (!email.includes('@') || !email.trim()) {
       throw new Error('Invalid email');
     } else {
-      this.#email = email;
+      this._email = email;
     }
+  }
+
+  set password(NewPassword: string) {
+    this._password = atob(NewPassword);
   }
 }
 

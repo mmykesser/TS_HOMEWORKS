@@ -1,9 +1,10 @@
 import User from './User.js';
+import { ifcTeacher } from './interface.js';
 
-class Teacher extends User {
-  subjects: string[] = ['JS', 'TS', 'PHP'];
+class Teacher extends User implements ifcTeacher {
+  public subjects: string[] = ['JS', 'TS', 'PHP'];
 
-  addSubject(subject: string) {
+  public addSubject(subject: string): void {
     this.subjects.push(subject);
   }
 }

@@ -7,8 +7,7 @@ import CourseManager from './CourseManager.js';
 const u1: User = new User('Alex', 'Alex311@gmil.com');
 const u2: User = new User('Bob', 'Bob3@gmail.com');
 
-const info = { u1: u1.info, u2: u2.info };
-console.log(`User Info: ${info}`);
+console.log(`User Info: ${u1.info}, ${u2.info}`);
 
 const teacher1: Teacher = new Teacher('John', 'john@gmil.com');
 const teacher2: Teacher = new Teacher('Matthew', 'matthew @gmail.com');

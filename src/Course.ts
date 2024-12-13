@@ -1,53 +1,53 @@
 import BaseModel from './BaseModel.js';
 import Teacher from './Teacher.js';
 import Student from './Student.js';
+import { ifcCourse } from './interface.js';
 
-class Course extends BaseModel {
+class Course extends BaseModel implements ifcCourse {
   static id: number = 20;
 
-  #students: Student[] = [];
-  #teacher: Teacher | null = null;
-  name: string | null = null;
+  private _students: Student[] = [];
+  private _teacher: Teacher | null = null;
   id: number;
 
-  constructor(name: string, teacher: Teacher) {
+  constructor(
+    public name: string,
+    teacher: Teacher
+  ) {
     super();
     this.name = name;
+    this._teacher = teacher;
     this.id = Course.id;
-    this.#teacher = teacher;
     Course.id += 1;
   }
 
-  addStudent(student: Student) {
-    if (!this.#students.some((s) => s.id === student.id)) {
-      this.#students.push(student);
-      student.enroll(this);
+  public addStudent(student: Student): void {
+    if (!this._students.some((s: Student): boolean => s.id === student.id)) {
+      this._students.push(student);
     }
   }
 
-  removeStudent(studentId: number) {
-    const index = this.#students.findIndex((user) => user.id === studentId);
+  public removeStudent(studentId: number): void | never {
+    const index: number = this._students.findIndex(
+      (user: Student): boolean => user.id === studentId
+    );
     if (index !== -1) {
-      this.#students.splice(index, 1);
+      this._students.splice(index, 1);
     } else {
       throw new Error('Error with ID student');
     }
   }
 
-  set teacher(teacher: Teacher) {
-    this.#teacher = teacher;
+  public get teacher(): Teacher | null {
+    return this._teacher;
   }
 
-  get teacher(): Teacher | null {
-    return this.#teacher;
+  public set teacher(teacher: Teacher | null) {
+    this._teacher = teacher;
   }
 
-  get students(): Student[] {
-    return this.#students;
-  }
-
-  listStudents(): Student[] {
-    return this.students;
+  public listStudents(): Student[] {
+    return [...this._students];
   }
 }
 
